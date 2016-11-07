@@ -1,0 +1,178 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,300italic,600,600italic);
+
+$text-color: #3c3c3d;
+$accent-color: #b05;
+$border-color: #bebec2;
+$button-bg-color: $accent-color;
+$button-color: #fff;
+$button-hover-bg-color: #3c3c3d;
+$button-hover-color: #fff;
+$panel-header-color: #fff;
+$panel-header-bg-color: #868687;
+$panel-color: $text-color;
+$panel-bg-color: #f0f0f5;
+$input-bg-color: #fff;
+$input-color: $text-color;
+$shadow-color: rgba(0, 0, 0, .15);
+
+body {
+	background:radial-gradient(ellipse at 25% 25%, #ddd, #ccc);
+	background-attachment:fixed;
+}
+
+body, input, textarea, select, button {
+	font: 300 100% Lato, sans-serif;
+	line-height: 1.4;
+	color: $text-color;
+}
+
+h1 {
+	font-weight: 300;
+	font-size: 3rem;
+	line-height: 1;
+}
+
+h2, h3, h4, h5, h6, strong, b {
+	font-weight: 600;
+}
+
+.page-header {
+	padding: 2rem 0;
+	border-bottom: 1px solid $border-color;
+	margin-bottom: 2rem;
+}
+
+.page-header h1 {
+	margin: 0;
+}
+
+.button-impl {
+	display: inline-block;
+	border: 0;
+	padding: .5rem 0;
+	margin: 0;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: .03125em;
+}
+
+.button {
+	@extend .button-impl;
+	padding: .5rem 1.5rem;
+	background-color: $button-bg-color;
+	color: $button-color;
+}
+
+.button:hover {
+	background-color: $button-hover-bg-color;
+	color: $button-hover-color;
+}
+
+.button:focus {
+	background-color: darken($button-bg-color, 20%);
+	outline: none;
+}
+
+.flat-button {
+	@extend .button-impl;
+	color: $accent-color;
+	background-color: transparent;
+}
+
+.flat-button:hover {
+	color: $text-color;
+}
+
+.flat-button:focus {
+	outline: none;
+	position: relative;
+}
+
+.flat-button:focus::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1px;
+	background-color: $accent-color;
+}
+
+.panel > header {
+	background-color: $panel-header-bg-color;
+	color: $panel-header-color;
+	padding: .5rem 2rem;
+}
+
+.panel-body {
+	padding: 1rem 2rem;
+	background-color: $panel-bg-color;
+	color: $panel-color;
+}
+
+label {
+	padding-top: calc(.25rem + 1px);
+}
+
+input, textarea, .select, .select .options {
+	border: 1px solid $border-color;
+	background-color: $input-bg-color;
+	color: $input-color;
+	padding: .25rem;
+}
+
+input:focus, textarea:focus, .select:focus {
+	outline: none;
+	border-color: $accent-color;
+	background-image: linear-gradient(to right, rgba($accent-color, .1), rgba($accent-color, .1));
+}
+
+.select .dropper {
+	background-color: rgba(#000, .075);
+}
+
+.select:hover .dropper {
+	color: $accent-color;
+}
+
+.select .option {
+	position: relative;
+}
+
+.select .option.selected::after {
+	content: '\2713';
+	position: absolute;
+	right: .25em;
+	top: .25em;
+	z-index: 1;
+}
+
+.select .option:hover, .select .option.kbd-selection {
+	background-color: $button-bg-color;
+	color: $button-color;
+}
+
+.checkbox {
+	display: inline-block;
+	position: relative;
+	width: .75rem;
+	height: .75rem;
+	border: 1px solid $border-color;
+	background-color: $input-bg-color;
+	color: $input-color;
+	margin-right: .25rem;
+}
+
+.checkbox::before {
+	content: '';
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	right: 2px;
+	bottom: 2px;
+	z-index: 1;
+}
+
+.checkbox[data-checked="true"]::before {
+	background-color: $accent-color;
+}
