@@ -13,7 +13,7 @@
 
 	Array.prototype.forEach.call(selects, function(element) {
 		var dummy = document.createElement('div');
-		dummy.className = 'select';
+		dummy.className = 'select ' + element.className;
 		dummy.tabIndex = 0;
 
 		var value = document.createElement('div');
@@ -29,18 +29,18 @@
 		var options = document.createElement('div');
 		options.className = 'options';
 		dummy.appendChild(options);
-		
-		dummy.addEventListener('keyup', function(evt) {			
+
+		dummy.addEventListener('keyup', function(evt) {
 			var style = window.getComputedStyle(evt.currentTarget.querySelector('.options'));
 			var selection = evt.currentTarget.querySelector('.kbd-selection');
-			
+
 			if (style.display === 'none') {
 				switch (evt.which) {
 					case 32: // spacebar
 					case 38: // up arrow
 					case 40: // down arrow
 						evt.currentTarget.click();
-						
+
 						if (evt.which === 38) {
 							// up arrow => move up
 							if (selection && selection.prevElementSibling) {
@@ -61,12 +61,12 @@
 								evt.currentTarget.querySelector('.option:last-child').classList.add('kbd-selection');
 							}
 						}
-										
+
 						break;
 				}
-				
+
 			}
-			else {				
+			else {
 				if (evt.which === 38) {
 					// up arrow => move up
 					if (selection && selection.previousElementSibling) {
@@ -109,7 +109,7 @@
 			optel.addEventListener('click', function(evt) {
 				evt.preventDefault();
 				evt.stopPropagation();
-				
+
 				Array.prototype.forEach.call(options.querySelectorAll('.option'), function(el) {
 					el.classList.remove('selected');
 				});
@@ -117,7 +117,7 @@
 
 				value.innerHTML = evt.currentTarget.innerHTML;
 				value.dataset.value = evt.currentTarget.dataset.value;
-				
+
 				options.style.display = 'none';
 			});
 
@@ -133,9 +133,9 @@
 		dummy.addEventListener('click', function(evt) {
 			evt.stopPropagation();
 			evt.currentTarget.querySelector('.options').style.display = 'block';
-	
+
 			var selection = evt.currentTarget.querySelector('.kbd-selection');
-			
+
 			if (selection) {
 				selection.classList.remove('kbd-selection');
 			}
@@ -167,7 +167,7 @@
 
 		element.parentNode.insertBefore(dummy, element);
 	});
-	
+
 	function change_checkbox(checkbox) {
 		checkbox.dataset.checked = checkbox.checkboxElement.checked;
 
